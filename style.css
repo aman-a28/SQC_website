@@ -1,0 +1,21 @@
+:root {
+    --bg: #0a0f1f;
+    --card: #141b35;
+    --accent: #00eaff;
+    --accent2: #7b7bff;
+    --text: #eef1ff;
+    --muted: #9aa3d1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #11183a, var(--bg));
+    color: var(--text);
+    overflow-x: hidden;
+}

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQC | Super Quant Coders</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0f1f;
+      --card:#141b35;
+      --accent:#00eaff;
+      --accent2:#7b7bff;
+      --text:#eef1ff;
+      --muted:#9aa3d1;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:radial-gradient(circle at top,#11183a,var(--bg));
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+    nav{
+      position:fixed;
+      top:0;left:0;
+      width:100%;
+      padding:1rem 6vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(10,15,31,0.7);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    nav h2{
+      font-family:'Orbitron',sans-serif;
+      color:var(--accent);
+      letter-spacing:1px;
+    }
+
+    nav ul{
+      display:flex;
+      gap:2rem;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:500;
+      position:relative;
+    }
+
+    nav ul li a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-6px;
+      width:0;height:2px;
+      background:var(--accent);
+      transition:0.3s;
+    }
+
+    nav ul li a:hover::after{width:100%;}
+
+    /* ================= HERO ================= */
+    header{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:2rem;
+    }
+
+    .hero h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:clamp(2.5rem,6vw,4rem);
+      margin-bottom:1rem;
+    }
+
+    .hero h1 span{color:var(--accent);}
+
+    .hero p{
+      max-width:720px;
+      margin:auto;
+      color:var(--muted);
+      font-size:1.1rem;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:2rem;
+      padding:0.9rem 2.2rem;
+      border-radius:30px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#000;
+      font-weight:600;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(0,234,255,0.4);
+    }
+
+    section{padding:5rem 8vw;}
+
+    .section-title{
+      font-family:'Orbitron',sans-serif;
+      font-size:2.2rem;
+      margin-bottom:2.5rem;
+      color:var(--accent);
+    }
+
+    /* ================= ABOUT ================= */
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:3rem;
+      align-items:center;
+    }
+
+    .card{
+      background:var(--card);
+      padding:2rem;
+      border-radius:20px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.45);
+      transition:0.3s;
+    }
+
+    .card:hover{transform:translateY(-6px);}
+
+    .robot img{
+      width:100%;
+      border-radius:18px;
+      margin-bottom:1rem;
+    }
+
+    .robot h3{
+      font-family:'Orbitron',sans-serif;
+      color:var(--accent2);
+      margin-bottom:0.5rem;
+    }
+
+    /* ================= DOMAINS ================= */
+    .domains{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:2rem;
+    }
+
+    .domain h4{color:var(--accent);margin-bottom:0.5rem;}
+
+    /* ================= CHI-CHI INTERACTION ================= */
+    .chi-chi{
+      text-align:center;
+    }
+
+    .chi-chi img{
+      width:320px;
+      max-width:90%;
+      transition:0.4s ease;
+      cursor:pointer;
+    }
+
+    .chi-chi img.active{
+      transform:translateY(-15px) rotate(-2deg);
+      filter:drop-shadow(0 20px 25px rgba(0,234,255,0.5));
+    }
+
+    .chi-chi p{
+      margin-top:1rem;
+      color:var(--muted);
+    }
+
+    footer{
+      background:#060912;
+      text-align:center;
+      padding:2rem;
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+
+    /* ================= GLOW CURSOR ================= */
+    .glow{
+      position:fixed;
+      width:180px;height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(0,234,255,0.25),transparent 70%);
+      pointer-events:none;
+      transform:translate(-50%,-50%);
+      z-index:9999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow" id="glow"></div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h2>SQC</h2>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#chichi">Chi‑Chi</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <div class="hero">
+      <h1>Super <span>Quant Coders</span></h1>
+      <p>
+        The official technical club of our college where coding, robotics,
+        AI and innovation collide. We don’t just learn tech — we build it.
+      </p>
+      <a href="#about" class="btn">Discover SQC</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About SQC</h2>
+    <div class="about">
+      <div class="card">
+        <p>
+          SQC (Super Quant Coders) is a student‑driven technical club focused on
+          competitive programming, robotics, electronics, AI and real‑world
+          problem solving. We believe in learning by building, experimenting
+          and collaborating.
+        </p>
+      </div>
+      <div class="card robot">
+        <img src="roboticdog.png" alt="Chi-Chi Robotic Dog">
+        <h3>Our Mascot – Chi‑Chi 🤖🐕</h3>
+        <p>
+          Chi‑Chi is our robotic dog — a symbol of intelligence, precision and
+          futuristic engineering.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMAINS -->
+  <section id="domains">
+    <h2 class="section-title">What We Do</h2>
+    <div class="domains">
+      <div class="card domain"><h4>💻 Competitive Coding</h4><p>DSA, contests & interview prep.</p></div>
+      <div class="card domain"><h4>🤖 Robotics & IoT</h4><p>Autonomous bots, embedded systems.</p></div>
+      <div class="card domain"><h4>🧠 AI & ML</h4><p>Vision, ML models & smart systems.</p></div>
+      <div class="card domain"><h4>🚀 Hackathons</h4><p>Innovative team‑based challenges.</p></div>
+    </div>
+  </section>
+
+  <!-- CHI-CHI INTERACTION -->
+  <section id="chichi" class="chi-chi">
+    <h2 class="section-title">Interact with Chi‑Chi</h2>
+    <img src="roboticdog.png" id="dog" alt="Chi-Chi Interactive">
+    <p>Click Chi‑Chi to activate power mode ⚡</p>
+  </section>
+
+  <footer>
+    © 2026 Super Quant Coders (SQC) | Built with ⚡ by SQC Team
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* Glow cursor */
+    const glow = document.getElementById('glow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    /* Chi‑Chi interaction */
+    const dog = document.getElementById('dog');
+    dog.addEventListener('click', () => {
+      dog.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
